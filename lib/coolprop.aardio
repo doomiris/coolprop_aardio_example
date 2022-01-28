@@ -1,0 +1,20 @@
+﻿
+namespace coolprop;
+_dll = ..raw.loadDll("\res\CoolProp.dll");
+Props1SI = _dll.api("Props1SI","double (string Refrigerant, string PropertyToReturn)", "cdecl");
+PropsSI = _dll.api("PropsSI","double (string PropertyToReturn, string InputProperty1, double InputValue1, string InputProperty2, double InputValue2, string Refrigerant", "cdecl");
+
+/*
+API
+http://www.coolprop.org/coolprop/HighLevelAPI.html
+http://www.coolprop.org/_static/doxygen/html/_cool_prop_lib_8h.html
+download DLL
+https://sourceforge.net/projects/coolprop/
+
+*/
+
+/**intellisense(coolprop)
+Props1SI(.(制冷剂, 计算类型) = 
+PropsSI(.(计算类型, 字符输入值1, 输入值1, 字符输入值2, 输入值2, 制冷剂) = 
+PropsSI(.(计算类型, "", 0, "", 0, 制冷剂) = @"计算类型", "", 0, "", 0, "制冷剂")
+end intellisense**/

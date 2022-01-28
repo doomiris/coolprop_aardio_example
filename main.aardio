@@ -1,14 +1,17 @@
 import console
-console.open()
+import coolprop;
 
-_dll = ..raw.loadDll("\res\CoolProp.dll",,"__cdecl");
-/*
-https://sourceforge.net/projects/coolprop/files/CoolProp/6.4.1/shared_library/Windows/32bit__cdecl/CoolProp.dll/download
-*/
-var Props1SI = _dll.api("Props1SI","double (string Refrigerant, string PropertyToReturn)", "cdecl");
-var PropsSI = _dll.api("PropsSI","double (string PropertyToReturn, string InputProperty1, double InputValue1, string InputProperty2, double InputValue2, string Refrigerant", "cdecl");
+var PropsSI = coolprop.PropsSI;
+var Props1SI = coolprop.Props1SI;
 
 console.log(Props1SI("R410A", "Tcrit"));
+
 console.log(PropsSI("Dmass", "T", 298.15, "P", 101325, "R410A"));
+console.log(PropsSI('D', 'T', 300, 'P', 101325, 'HEOS::R32[0.697615]&R125[0.302385]'));
+console.log(PropsSI('D', 'P', 101325, 'T', 300, 'Air.mix'))
+console.log(PropsSI('d(Hmolar)/d(T)|sigma', 'P', 101325, 'Q', 1, 'Water'))
+console.log(PropsSI('d(Hmass)/d(T)|P','P', 101325, 'T', 300, 'Water'))
+console.log(PropsSI("Tcrit", "", 0, "", 0, "Water")) /* Trivial inputs */
+
 
 console.pause();
