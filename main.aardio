@@ -1,0 +1,14 @@
+import console
+console.open()
+
+_dll = ..raw.loadDll("\res\CoolProp.dll",,"__cdecl");
+/*
+https://sourceforge.net/projects/coolprop/files/CoolProp/6.4.1/shared_library/Windows/32bit__cdecl/CoolProp.dll/download
+*/
+var Props1SI = _dll.api("Props1SI","double (string Refrigerant, string PropertyToReturn)", "cdecl");
+var PropsSI = _dll.api("PropsSI","double (string PropertyToReturn, string InputProperty1, double InputValue1, string InputProperty2, double InputValue2, string Refrigerant", "cdecl");
+
+console.log(Props1SI("R410A", "Tcrit"));
+console.log(PropsSI("Dmass", "T", 298.15, "P", 101325, "R410A"));
+
+console.pause();
